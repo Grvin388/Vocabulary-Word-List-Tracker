@@ -163,8 +163,36 @@ public class Driver {
 
     }
 
-    public void insertTopiceBefore() {
+    public static void insertTopicBefore(VocabList vocabList) {
+        int choice = printPickATopic(vocabList);
 
-    }
+        ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
 
+        String topicNameToInsertBefore  = arrayListVocab.get(choice - 1).getTopicName();
+
+        System.out.println("Enter the new topic name:");
+        Scanner in = new Scanner(System.in);
+        String topicName = in.nextLine();
+
+   
+        System.out.println("Enter a word - Press Enter to quit");
+        WordList wordList = new WordList();
+        String word = in.nextLine();
+        while (!word.equals("")) {
+            wordList.addWord(word);
+            word = in.nextLine();
+        }
+
+        Vocab newVocab = new Vocab(topicName, wordList);
+
+        vocabList.addVocabBefore(topicNameToInsertBefore, newVocab);
+
+
+        // print the new vocab list
+        ArrayList<Vocab> arrayListVocab2 = vocabList.getVocabList();
+
+        for (int i = 0; i<arrayListVocab.size(); i++){
+            System.out.println(arrayListVocab2.get(i).getTopicName());
+        }
+        }
 }
