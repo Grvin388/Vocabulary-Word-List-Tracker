@@ -155,7 +155,7 @@ public class Driver {
 
         ArrayList<String> wordList = vocab.getWordList().getVocabListArray();
         for (int i = 0; i < wordList.size(); i++) {
-            System.out.print(i + 1 + " : " + wordList.get(i) + " \t\t\t");
+            System.out.print(i + 1 + " : " + wordList.get(i) + " \t\t");
             if ((i + 1) % 4 == 0)
                 System.out.println();
 
