@@ -15,6 +15,7 @@ public class VocabList {
 
     // Attributes
      private Node head;
+     int size;
 
     // Constructor
     public VocabList() {
@@ -35,6 +36,7 @@ public class VocabList {
             current.next = newNode;
             newNode.prev = current;
         }
+        size++;
     }
 
     // remove a vocab from the list
@@ -60,7 +62,34 @@ public class VocabList {
             }
             current = current.next;
         }
+        size--;
     }
+
+
+    // add vocab in front of a specific topic
+    public void addVocabBefore(String topicName, Vocab vocab) {
+        Node newNode = new Node(vocab);
+        // if the list is empty
+        if (head == null) {
+            head = newNode;
+        } else { // if the list is not empty
+            Node current = head;
+            while (current.next != null) {
+                if (current.vocab.getTopicName().equals(topicName)) {
+                    newNode.next = current;
+                    newNode.prev = current.prev;
+                    current.prev = newNode;
+                    current.prev.next = newNode;
+                    return;
+                }
+                current = current.next;
+            }
+            current.next = newNode;
+            newNode.prev = current;
+        }
+        size++;
+    }
+
 
     // toString
     public String toString() {

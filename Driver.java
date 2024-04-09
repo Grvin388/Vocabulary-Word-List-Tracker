@@ -4,7 +4,6 @@ import java.io.File;
 public class Driver {
     public static void main(String[] args) {
         organiseFile();
-
     }
 
     // Organise input file into a list of vocab objects
@@ -21,15 +20,18 @@ public class Driver {
             // Reading each "bloc of vocabulary" of the input file
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
+                
                 // if the line starts with #, it is a topic name and it is the beginning of the
                 // block of words
                 if (line.startsWith("#")) {
                     // Create a new Vocab object with its topic name and its list of words
                     String toppicName = line.substring(1);
                     WordList WordList = new WordList();
-                    while (sc.hasNextLine()) {
+                  
+                    while (sc.hasNextLine()) {// Reading each word of the block of words
                         String word = sc.nextLine();
-
+                         
+                        // if the line is empty, it is the end of the block of words
                         if (word.equals(""))
                             break;
 
@@ -41,8 +43,6 @@ public class Driver {
 
             }
             sc.close();
-            System.out.println(vocabList.head);
-           
         }
 
         catch (
