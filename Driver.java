@@ -121,10 +121,8 @@ public class Driver {
     }
 
     private static void browseTopic(VocabList vocabList) {
-        printPickATopic(vocabList);
-
-
-
+        int choice = printPickATopic(vocabList);
+        
     }
 
     public static int printPickATopic(VocabList vocabList) {
@@ -146,6 +144,9 @@ public class Driver {
         System.out.println("Enter Your Choice:");
         Scanner in = new Scanner(System.in);
         int choice = in.nextInt();
+       if(choice == 0)
+           mainMenu(vocabList);
+       else
         return choice;
     }
 
