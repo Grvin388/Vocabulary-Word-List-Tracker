@@ -56,7 +56,7 @@ public class Driver {
         return vocabList;
     }
 
-   /* public static void mainMenu(VocabList vocabList) {
+   public static void mainMenu(VocabList vocabList) {
         System.out.println("1 browse a topic");
         System.out.println("2 insert a new topic before another one");
         System.out.println("3 insert a new topic after another one");
@@ -119,7 +119,7 @@ public class Driver {
                 mainMenu();
                 break;
         }
-    }*/
+    }
 
     public static int printPickATopic(VocabList vocabList) {
         System.out.println("Pick a topic");
@@ -135,25 +135,23 @@ public class Driver {
         System.out.println("Enter Your Choice:");
         Scanner in = new Scanner(System.in);
         int choice = in.nextInt();
-      /*  if (choice == 0)
+        if (choice == 0)
            mainMenu(vocabList);
-*/
+
         return choice;
     }
 
-    /*private static void browseTopic(VocabList vocabList) {
+    private static void browseTopic(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
-        VocabList.Node current = vocabList.getHead();
-        for (int i = 1; i <= choice; i++) {
-            current = current.getNext();
-        }
+    
+        ArrayList<Vocab> vocabList = vocabList.getVocabList();
 
         System.out.println("Topic: " + current.getVocab().getTopicName());
 
    
 
 
-    }*/
+    }
 
     public void insertTopiceBefore() {
 
