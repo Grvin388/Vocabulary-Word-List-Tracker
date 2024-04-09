@@ -55,7 +55,7 @@ public class Driver {
         return vocabList;
     }
 
-    public static void mainMenu() {
+    public static void mainMenu(VocabList vocabList) {
         System.out.println("1 browse a topic");
         System.out.println("2 insert a new topic before another one");
         System.out.println("3 insert a new topic after another one");
