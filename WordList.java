@@ -13,7 +13,7 @@ public class WordList {
 
     // Attributes
     private Node head;
-
+    private int size = 0;
     // Constructor
     public WordList() {
         this.head = null;
@@ -32,6 +32,7 @@ public class WordList {
             }
             current.next = newNode;
         }
+        size++;
     }
 
     // remove a word from the list
@@ -43,7 +44,8 @@ public class WordList {
 
         // if the word is the first element
         if (head.word.equals(word)) {
-            head = head.next;
+            head = null;
+            size--;
             return;
         }
         // if the word is not the first element
@@ -51,10 +53,13 @@ public class WordList {
         while (current.next != null) {
             if (current.next.word.equals(word)) {
                 current.next = current.next.next;
+                size--;
                 return;
             }
             current = current.next;
         }
+
+        
     }
 
     // toString

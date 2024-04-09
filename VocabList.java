@@ -15,7 +15,7 @@ public class VocabList {
 
     // Attributes
      private Node head;
-     int size;
+     int size=0;
 
     // Constructor
     public VocabList() {
