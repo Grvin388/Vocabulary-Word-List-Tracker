@@ -3,18 +3,18 @@ import java.io.File;
 
 public class Driver {
     public static void main(String[] args) {
-        organiseFile();
+        organiseFile("A3_input_file.txt");
     }
 
     // Organise input file into a list of vocab objects
     // Organise the list of vocab objects into a list of vocab lists
-    public static void organiseFile() {
+    public static void organiseFile(String file) {
 
         VocabList vocabList = new VocabList();
 
         try {
             // Read input File
-            File inputFile = new File("A3_input_file.txt");
+            File inputFile = new File(file);
             Scanner sc = new Scanner(inputFile);
 
             // Reading each "bloc of vocabulary" of the input file
@@ -115,6 +115,11 @@ public static void mainMenu(){
                 mainMenu();
                 break;
         }
+}
+
+public void insertTopiceBefore(){
+
+
 }
 
 }
