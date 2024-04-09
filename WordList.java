@@ -13,7 +13,14 @@ public class WordList {
 
     // Attributes
     private Node head;
+
     private int size = 0;
+
+    // Getter for size
+    public int getSize() {
+        return size;
+    }
+
     // Constructor
     public WordList() {
         this.head = null;
@@ -59,7 +66,6 @@ public class WordList {
             current = current.next;
         }
 
-        
     }
 
     // toString

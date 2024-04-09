@@ -5,6 +5,18 @@ public class VocabList {
         private Vocab vocab;
         private Node next;
         private Node prev;
+        
+        public Vocab getVocab() {
+            return vocab;
+        }
+        
+        public Node getNext() {
+            return next;
+        }
+        
+        public Node getPrev() {
+            return prev;
+        }
 
         public Node(Vocab vocab) {
             this.vocab = vocab;
@@ -15,7 +27,15 @@ public class VocabList {
 
     // Attributes
      private Node head;
-     int size=0;
+     private int size = 0;
+    // Getter for size
+    public int getSize() {
+        return size;
+    }
+       // Getter for head
+       public Node getHead() {
+        return head;
+    }
 
     // Constructor
     public VocabList() {
