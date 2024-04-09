@@ -1,4 +1,7 @@
 // Purpose: This class is used to store the list of words. This is a single linked list
+
+import java.util.ArrayList;
+
 public class WordList {
     // Node class
     private static class Node {
@@ -97,5 +100,17 @@ public class WordList {
             current = current.next;
         }
         return result;
+    }
+
+    // get word 
+    
+    public ArrayList<String> getVocabListArray() {
+        ArrayList<String> wordList = new ArrayList<String>(size);
+        Node current = head;
+        while (current != null) {
+            wordList.add(current.word);
+            current = current.next;
+        }
+        return wordList;
     }
 }
