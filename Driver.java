@@ -62,7 +62,7 @@ public class Driver {
         System.out.println("4 remove a topic");
         System.out.println("5 modify a topic");
         System.out.println("6 search topics for a word");
-        System.out.println("7 load from a file");
+        System.out.println("7 load from a file");  //call organize file and then use this new list for the main menu
         System.out.println("8 show all words starting with a given letter");
         System.out.println("9 save to file");
         System.out.println("0 exit");
@@ -74,7 +74,7 @@ public class Driver {
         switch (choice) {
 
             case 1:
-                browseTopic();
+                browseTopic(vocabList);
                 break;
 
             case 2:
@@ -120,7 +120,14 @@ public class Driver {
         }
     }
 
-    public static void printPickATopic(VocabList vocabList) {
+    private static void browseTopic(VocabList vocabList) {
+        printPickATopic(vocabList);
+
+
+
+    }
+
+    public static int printPickATopic(VocabList vocabList) {
         System.out.println("Pick a topic");
         System.out.println("-----------------------------");
         VocabList.Node current = vocabList.getHead();
@@ -132,7 +139,14 @@ public class Driver {
                 System.out.println(i + "." + current.getVocab().getTopicName());
                 current = current.getNext();
             }
+            
         }
+
+        System.out.println("------------------------------");
+        System.out.println("Enter Your Choice:");
+        Scanner in = new Scanner(System.in);
+        int choice = in.nextInt();
+        return choice;
     }
 
     public void insertTopiceBefore() {
