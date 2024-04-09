@@ -146,7 +146,7 @@ public class Driver {
         int choice = in.nextInt();
        if(choice == 0)
            mainMenu(vocabList);
-       else
+
         return choice;
     }
 
