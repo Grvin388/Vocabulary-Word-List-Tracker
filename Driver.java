@@ -3,12 +3,12 @@ import java.io.File;
 
 public class Driver {
     public static void main(String[] args) {
-        organiseFile("A3_input_file.txt");
+     VocabList vocabList=   organiseFile("A3_input_file.txt");
     }
 
     // Organise input file into a list of vocab objects
     // Organise the list of vocab objects into a list of vocab lists
-    public static void organiseFile(String file) {
+    public static VocabList organiseFile(String file) {
 
         VocabList vocabList = new VocabList();
 
@@ -50,6 +50,7 @@ public class Driver {
         Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
+        return vocabList;
     }
 
 public static void mainMenu(){
