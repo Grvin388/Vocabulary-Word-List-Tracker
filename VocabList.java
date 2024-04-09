@@ -1,22 +1,14 @@
 // Purpose: This class is used to store the list of vocab objects. This is a double linked list
+
+import java.util.ArrayList;
+
 public class VocabList {
     // Node class
-    static class Node {
+  private static class Node {
         private Vocab vocab;
         private Node next;
         private Node prev;
-        
-        public Vocab getVocab() {
-            return vocab;
-        }
-        
-        public Node getNext() {
-            return next;
-        }
-        
-        public Node getPrev() {
-            return prev;
-        }
+    
 
         public Node(Vocab vocab) {
             this.vocab = vocab;
@@ -56,7 +48,7 @@ public class VocabList {
             current.next = newNode;
             newNode.prev = current;
         }
-        size++;
+        this.size++;
     }
 
     // remove a vocab from the list
@@ -108,6 +100,16 @@ public class VocabList {
             newNode.prev = current;
         }
         size++;
+    }
+
+    public ArrayList<Vocab> getVocabList() {
+        ArrayList<Vocab> vocabList = new ArrayList<Vocab>(size);
+        Node current = head;
+        while (current != null) {
+            vocabList.add(current.vocab);
+            current = current.next;
+        }
+        return vocabList;
     }
 
 

@@ -5,6 +5,21 @@ public class WordList {
         private String word;
         private Node next;
 
+        private Node(String word, Node next) {
+            this.word = word;
+            this.next = next;
+        }
+
+        // Getter for word
+        public String getWord() {
+            return word;
+        }
+
+        // Getter for next
+        public Node getNext() {
+            return next;
+        }
+
         private Node(String word) {
             this.word = word;
             this.next = null;
@@ -13,6 +28,11 @@ public class WordList {
 
     // Attributes
     private Node head;
+
+    // Getter for head
+    public Node getHead() {
+        return head;
+    }
 
     private int size = 0;
 

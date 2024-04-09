@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
@@ -55,14 +56,14 @@ public class Driver {
         return vocabList;
     }
 
-    public static void mainMenu(VocabList vocabList) {
+   /* public static void mainMenu(VocabList vocabList) {
         System.out.println("1 browse a topic");
         System.out.println("2 insert a new topic before another one");
         System.out.println("3 insert a new topic after another one");
         System.out.println("4 remove a topic");
         System.out.println("5 modify a topic");
         System.out.println("6 search topics for a word");
-        System.out.println("7 load from a file");  //call organize file and then use this new list for the main menu
+        System.out.println("7 load from a file"); // call organize file and then use this new list for the main menu
         System.out.println("8 show all words starting with a given letter");
         System.out.println("9 save to file");
         System.out.println("0 exit");
@@ -118,37 +119,41 @@ public class Driver {
                 mainMenu();
                 break;
         }
-    }
-
-    private static void browseTopic(VocabList vocabList) {
-        int choice = printPickATopic(vocabList);
-        
-    }
+    }*/
 
     public static int printPickATopic(VocabList vocabList) {
         System.out.println("Pick a topic");
         System.out.println("-----------------------------");
-        VocabList.Node current = vocabList.getHead();
-        for (int i = 1; i <= vocabList.getSize(); i++) {
-            if (vocabList.getSize() == 0) {
-                System.out.println("No topics available");
-            } else {
+      
+        ArrayList<Vocab> arrList = vocabList.getVocabList();
 
-                System.out.println(i + "." + current.getVocab().getTopicName());
-                current = current.getNext();
-            }
-            
+        for (int i =0; i < arrList.size(); i++) {
+            System.out.println(i+1 + ". " + arrList.get(i).getTopicName());
         }
 
         System.out.println("------------------------------");
         System.out.println("Enter Your Choice:");
         Scanner in = new Scanner(System.in);
         int choice = in.nextInt();
-       if(choice == 0)
+      /*  if (choice == 0)
            mainMenu(vocabList);
-
+*/
         return choice;
     }
+
+    /*private static void browseTopic(VocabList vocabList) {
+        int choice = printPickATopic(vocabList);
+        VocabList.Node current = vocabList.getHead();
+        for (int i = 1; i <= choice; i++) {
+            current = current.getNext();
+        }
+
+        System.out.println("Topic: " + current.getVocab().getTopicName());
+
+   
+
+
+    }*/
 
     public void insertTopiceBefore() {
 
