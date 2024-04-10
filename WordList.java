@@ -13,15 +13,6 @@ public class WordList {
             this.next = next;
         }
 
-        // Getter for word
-        public String getWord() {
-            return word;
-        }
-
-        // Getter for next
-        public Node getNext() {
-            return next;
-        }
 
         private Node(String word) {
             this.word = word;

@@ -5,7 +5,7 @@ import java.io.File;
 public class Driver {
     public static void main(String[] args) {
         VocabList vocabList = organiseFile("A3_input_file.txt");
-        removeTopic(vocabList);
+        mainMenu(vocabList);
     }
 
     // Organise input file into a list of vocab objects
@@ -56,73 +56,81 @@ public class Driver {
         return vocabList;
     }
 
-    /*
-     * public static void mainMenu(VocabList vocabList) {
-     * System.out.println("1 browse a topic");
-     * System.out.println("2 insert a new topic before another one");
-     * System.out.println("3 insert a new topic after another one");
-     * System.out.println("4 remove a topic");
-     * System.out.println("5 modify a topic");
-     * System.out.println("6 search topics for a word");
-     * System.out.println("7 load from a file"); // call organize file and then use
-     * this new list for the main menu
-     * System.out.println("8 show all words starting with a given letter");
-     * System.out.println("9 save to file");
-     * System.out.println("0 exit");
-     * System.out.println("-----------------------------");
-     * 
-     * Scanner in = new Scanner(System.in);
-     * int choice = in.nextInt();
-     * 
-     * switch (choice) {
-     * 
-     * case 1:
-     * browseTopic(vocabList);
-     * break;
-     * 
-     * case 2:
-     * insertTopicBefore();
-     * break;
-     * 
-     * case 3:
-     * insertTopicAfter();
-     * break;
-     * 
-     * case 4:
-     * removeTopic();
-     * break;
-     * 
-     * case 5:
-     * modifyTopic();
-     * break;
-     * 
-     * case 6:
-     * searchWord();
-     * break;
-     * 
-     * case 7:
-     * loadFile();
-     * break;
-     * 
-     * case 8:
-     * showWords();
-     * break;
-     * 
-     * case 9:
-     * saveFile();
-     * break;
-     * 
-     * case 0:
-     * System.exit(0);
-     * break;
-     * 
-     * default:
-     * System.out.println("Invalid choice");
-     * mainMenu();
-     * break;
-     * }
-     * }
-     */
+    public static void mainMenu(VocabList vocabList) {
+        int choice = -1;
+        Scanner sc = new Scanner(System.in);
+        while (choice != 0) { // use a while loop to keep the menu running until the user chooses to exit
+            System.out.println("Press enter to access the main menu");
+            sc.nextLine();
+            System.out.println("1 browse a topic");
+            System.out.println("2 insert a new topic before another one");
+            System.out.println("3 insert a new topic after another one");
+            System.out.println("4 remove a topic");
+            System.out.println("5 modify a topic");
+            System.out.println("6 search topics for a word");
+            System.out.println("7 load from a file"); // call organize file and then use this new list for the main menu
+            System.out.println("8 show all words starting with a given letter");
+            System.out.println("9 save to file");
+            System.out.println("0 exit");
+            System.out.println("-----------------------------");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+
+                case 1:
+                    browseTopic(vocabList);
+
+                    break;
+
+                case 2:
+                    VocabList newVocabList = insertTopicBefore(vocabList);
+                    vocabList = newVocabList;
+                    break;
+
+                case 3:
+                    VocabList newVocabList1 = insertTopicAfter(vocabList);
+                    vocabList = newVocabList1;
+                    break;
+
+                case 4:
+                    VocabList newVocabList2 = removeTopic(vocabList);
+                    vocabList = newVocabList2;
+                    break;
+
+                case 5:
+                    VocabList newVocabList3 = modifyTopic(vocabList);
+                    vocabList = newVocabList3;
+                    break;
+
+                /*
+                 * case 6:
+                 * searchWord();
+                 * break;
+                 * 
+                 * case 7:
+                 * loadFile();
+                 * break;
+                 * 
+                 * case 8:
+                 * showWords();
+                 * break;
+                 * 
+                 * case 9:
+                 * saveFile();
+                 * break;
+                 * 
+                 * 
+                 * 
+                 * default:
+                 * System.out.println("Invalid choice");
+                 * mainMenu(vocabList);
+                 * break;
+                 */
+            }
+        }
+        System.exit(0);
+    }
 
     public static int printPickATopic(VocabList vocabList) {
         System.out.println("Pick a topic");
@@ -160,10 +168,11 @@ public class Driver {
                 System.out.println();
 
         }
+        System.out.println("\n\n");
 
     }
 
-    public static void insertTopicBefore(VocabList vocabList) {
+    public static VocabList insertTopicBefore(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
 
         ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
@@ -171,32 +180,32 @@ public class Driver {
         String topicNameToInsertBefore = arrayListVocab.get(choice - 1).getTopicName();
 
         System.out.println("Enter the new topic name:");
-        Scanner in = new Scanner(System.in);
-        String topicName = in.nextLine();
+        Scanner sc = new Scanner(System.in);
+        String topicName = sc.nextLine();
 
         System.out.println("Enter a word - Press Enter to quit");
         WordList wordList = new WordList();
-        String word = in.nextLine();
+        String word = sc.nextLine();
         while (!word.equals("")) {
             wordList.addWord(word);
-            word = in.nextLine();
+            word = sc.nextLine();
         }
 
         Vocab newVocab = new Vocab(topicName, wordList);
 
         vocabList.addVocabBefore(topicNameToInsertBefore, newVocab);
 
-        //print the new vocab list
-        ArrayList<Vocab> arr = vocabList.getVocabList(); 
-        for(int i = 0;i<arr.size() ;i++){
-            System.out.println(arr.get(i));
-        }
-
-        
+        /*
+         * // print the new vocab list
+         * ArrayList<Vocab> arr = vocabList.getVocabList();
+         * for (int i = 0; i < arr.size(); i++) {
+         * System.out.println(arr.get(i));
+         * }
+         */
+        return vocabList;
     }
 
-
-    public static void insertTopicAfter(VocabList vocabList) {
+    public static VocabList insertTopicAfter(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
 
         ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
@@ -218,22 +227,33 @@ public class Driver {
         Vocab newVocab = new Vocab(topicName, wordList);
 
         vocabList.addVocabAfter(topicNameToInsertAfter, newVocab);
-
-         //print the new vocab list
-        ArrayList<Vocab> arr = vocabList.getVocabList(); 
-        for(int i = 0;i<arr.size() ;i++){
-            System.out.println(arr.get(i));
-        }
+        /*
+         * // print the new vocab list
+         * ArrayList<Vocab> arr = vocabList.getVocabList();
+         * for (int i = 0; i < arr.size(); i++) {
+         * System.out.println(arr.get(i));
+         * }
+         */
+        return vocabList;
     }
 
-    public static void removeTopic(VocabList vocabList){
+    public static VocabList removeTopic(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
-        String topicNameToRemove = vocabList.getVocabList().get(choice-1).getTopicName();
+        String topicNameToRemove = vocabList.getVocabList().get(choice - 1).getTopicName();
         vocabList.removeVocab(topicNameToRemove);
-        //print the new vocab list
-        ArrayList<Vocab> arr = vocabList.getVocabList();
-        for(int i = 0;i<arr.size() ;i++){
-            System.out.println(arr.get(i));
-        }
+        /*
+         * // print the new vocab list
+         * ArrayList<Vocab> arr = vocabList.getVocabList();
+         * for (int i = 0; i < arr.size(); i++) {
+         * System.out.println(arr.get(i));
+         * }
+         */
+        return vocabList;
+    }
+
+    public static VocabList modifyTopic(VocabList vocabList){
+        int choice = printPickATopic(vocabList);
+
+        return vocabList;
     }
 }
