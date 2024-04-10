@@ -55,9 +55,13 @@ public class VocabList {
     // remove a vocab from the list
     public void removeVocab(String topicName) {
         // if the list is empty
+        Node current = this.head;
+        
         if (this.head == null) {
             return;
         }
+
+        else{
 
         // if the vocab is the first element
         if (this.head.vocab.getTopicName().equals(topicName)) {
@@ -65,23 +69,29 @@ public class VocabList {
             this.head.prev = null;
             return;
         }
-        // if the vocab is not the first element
-        Node current = this.head;
-        while (current.next != null) {
-            if (current.next.vocab.getTopicName().equals(topicName)) {
-                current.next = current.next.next;
-                current.next.prev = current;
-                return;
+        
+
+       while (current.next != null){
+
+            if (current.vocab.getTopicName().equals(topicName)){
+
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                size--;
             }
             current = current.next;
-        }
+       }
 
-        // If the last vocab is the last
-        if (current.vocab.getTopicName().equals(topicName)) {
-            current.prev.next = null;
-            return;
-        }
-        size--;
+       if (current.next == null && current.vocab.getTopicName().equals(topicName)){
+           current.prev.next = null;
+           size--;
+       }
+
+       if (this.head.vocab.getTopicName().equals(topicName)){
+           this.head = this.head.next;
+           size--;
+       }
+    }
     }
 
     public void addVocabBefore(String topicNameToAddBefore, Vocab vocab) {

@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 public class Driver {
 
     static String fileName = "A3_input_file.txt";
+
     public static void main(String[] args) {
         VocabList vocabList = organiseFile(fileName);
         mainMenu(vocabList);
@@ -19,7 +20,7 @@ public class Driver {
 
         try {
             // Read input File
-            File inputFile = new File(fileName);
+            File inputFile = new File(file);
             Scanner sc = new Scanner(inputFile);
 
             // Reading each "bloc of vocabulary" of the input file
@@ -111,23 +112,23 @@ public class Driver {
                     break;
 
                 case 7:
-                    loadFile();
+                    VocabList newVocabList4 = loadFile();
+                    vocabList = newVocabList4;
                     break;
 
                 case 8:
                     showWordsStartSameLetter(vocabList);
                     break;
 
-                
-                 case 9:
+                case 9:
                     saveFile(vocabList);
                     break;
-                 
-                 default:
+
+                default:
                     System.out.println("Invalid choice");
                     mainMenu(vocabList);
                     break;
-                 
+
             }
         }
         System.exit(0);
@@ -319,7 +320,7 @@ public class Driver {
 
     }
 
-    public static void loadFile() {
+    public static VocabList loadFile() {
         System.out.println("Enter the name of the text file to load:");
         Scanner sc = new Scanner(System.in);
         String file = sc.nextLine();
@@ -327,7 +328,7 @@ public class Driver {
         VocabList vocabList = organiseFile(file);
         System.out.println("The file " + file + " has been loaded");
         fileName = file;
-        mainMenu(vocabList);
+        return vocabList;
     }
 
     public static void showWordsStartSameLetter(VocabList vocabList) {
@@ -348,23 +349,23 @@ public class Driver {
 
     }
 
-    public static void saveFile(VocabList vocablist){
+    public static void saveFile(VocabList vocablist) {
 
-        try{
+        try {
             File file = new File(fileName);
             PrintWriter writer = new PrintWriter(file);
-    
-            for (int i = 0 ; i < vocablist.getVocabList().size(); i++){
-                writer.println("#"+vocablist.getVocabList().get(i).getTopicName());
-    
-                for (int j = 0; j < vocablist.getVocabList().get(i).getWordList().getVocabListArray().size(); j++){
+
+            for (int i = 0; i < vocablist.getVocabList().size(); i++) {
+                writer.println("#" + vocablist.getVocabList().get(i).getTopicName());
+
+                for (int j = 0; j < vocablist.getVocabList().get(i).getWordList().getVocabListArray().size(); j++) {
                     writer.println(vocablist.getVocabList().get(i).getWordList().getVocabListArray().get(j));
                 }
                 writer.println();
             }
-    
+
             writer.close(); // Close the PrintWriter
-    
+
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
