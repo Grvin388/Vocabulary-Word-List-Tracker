@@ -5,7 +5,7 @@ import java.io.File;
 public class Driver {
     public static void main(String[] args) {
         VocabList vocabList = organiseFile("A3_input_file.txt");
-        insertTopicAfter(vocabList);
+        removeTopic(vocabList);
     }
 
     // Organise input file into a list of vocab objects
@@ -224,7 +224,16 @@ public class Driver {
         for(int i = 0;i<arr.size() ;i++){
             System.out.println(arr.get(i));
         }
+    }
 
-        
+    public static void removeTopic(VocabList vocabList){
+        int choice = printPickATopic(vocabList);
+        String topicNameToRemove = vocabList.getVocabList().get(choice-1).getTopicName();
+        vocabList.removeVocab(topicNameToRemove);
+        //print the new vocab list
+        ArrayList<Vocab> arr = vocabList.getVocabList();
+        for(int i = 0;i<arr.size() ;i++){
+            System.out.println(arr.get(i));
+        }
     }
 }
