@@ -5,7 +5,7 @@ import java.io.File;
 public class Driver {
     public static void main(String[] args) {
         VocabList vocabList = organiseFile("A3_input_file.txt");
-        insertTopicBefore(vocabList);
+        insertTopicAfter(vocabList);
     }
 
     // Organise input file into a list of vocab objects
@@ -186,10 +186,45 @@ public class Driver {
 
         vocabList.addVocabBefore(topicNameToInsertBefore, newVocab);
 
-        // print the new vocab list
+        //print the new vocab list
         ArrayList<Vocab> arr = vocabList.getVocabList(); 
         for(int i = 0;i<arr.size() ;i++){
             System.out.println(arr.get(i));
         }
+
+        
+    }
+
+
+    public static void insertTopicAfter(VocabList vocabList) {
+        int choice = printPickATopic(vocabList);
+
+        ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
+
+        String topicNameToInsertAfter = arrayListVocab.get(choice - 1).getTopicName();
+
+        System.out.println("Enter the new topic name:");
+        Scanner in = new Scanner(System.in);
+        String topicName = in.nextLine();
+
+        System.out.println("Enter a word - Press Enter to quit");
+        WordList wordList = new WordList();
+        String word = in.nextLine();
+        while (!word.equals("")) {
+            wordList.addWord(word);
+            word = in.nextLine();
+        }
+
+        Vocab newVocab = new Vocab(topicName, wordList);
+
+        vocabList.addVocabAfter(topicNameToInsertAfter, newVocab);
+
+         //print the new vocab list
+        ArrayList<Vocab> arr = vocabList.getVocabList(); 
+        for(int i = 0;i<arr.size() ;i++){
+            System.out.println(arr.get(i));
+        }
+
+        
     }
 }
