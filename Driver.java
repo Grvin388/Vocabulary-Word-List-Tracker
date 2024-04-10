@@ -103,11 +103,10 @@ public class Driver {
                     vocabList = newVocabList3;
                     break;
 
+                case 6:
+                    searchWord(vocabList);
+                    break;
                 /*
-                 * case 6:
-                 * searchWord();
-                 * break;
-                 * 
                  * case 7:
                  * loadFile();
                  * break;
@@ -251,9 +250,37 @@ public class Driver {
         return vocabList;
     }
 
-    public static VocabList modifyTopic(VocabList vocabList){
+    public static VocabList modifyTopic(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
 
         return vocabList;
+    }
+
+    public static void searchWord(VocabList vocabList) {
+        int i = 0;
+        boolean found = false;
+        System.out.println("Enter a word to search for:");
+        Scanner sc = new Scanner(System.in);
+        String word = sc.nextLine();
+        ArrayList<Vocab> arr = vocabList.getVocabList();
+        for (i = 0; i < arr.size(); i++) {
+            ArrayList<String> wordList = arr.get(i).getWordList().getVocabListArray();
+            for (int j = 0; j < wordList.size(); j++) {
+                if (wordList.get(j).equals(word)) {
+                    System.out.println("Word found in topic: " + arr.get(i).getTopicName());
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+
+        }
+
+        if (i == arr.size()) {
+            System.out.println("Word not found");
+        }
+
     }
 }
