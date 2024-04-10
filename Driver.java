@@ -349,7 +349,7 @@ public class Driver {
     }
 
     public static void saveFile(VocabList vocablist){
-        vocablist = organiseFile(fileName);
+
         try{
             File file = new File(fileName);
             PrintWriter writer = new PrintWriter(file);

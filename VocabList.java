@@ -75,6 +75,12 @@ public class VocabList {
             }
             current = current.next;
         }
+
+        // If the last vocab is the last
+        if (current.vocab.getTopicName().equals(topicName)) {
+            current.prev.next = null;
+            return;
+        }
         size--;
     }
 
