@@ -106,12 +106,12 @@ public class Driver {
                 case 6:
                     searchWord(vocabList);
                     break;
-                /*
-                 * case 7:
-                 * loadFile();
-                 * break;
-                 * 
-                 * case 8:
+                
+                  case 7:
+                  loadFile();
+                  break;
+                  
+                 /* case 8:
                  * showWords();
                  * break;
                  * 
@@ -315,6 +315,19 @@ public class Driver {
         if (i == arr.size()) {
             System.out.println("Word not found");
         }
+
+    }
+
+
+    public static void loadFile() {
+        System.out.println("Enter the name of the text file to load:");
+        Scanner sc = new Scanner(System.in);
+        String file = sc.nextLine();
+
+        VocabList vocabList = organiseFile(file);
+        System.out.println("The file " + file + " has been loaded");
+        mainMenu(vocabList);
+
 
     }
 }
