@@ -106,15 +106,16 @@ public class Driver {
                 case 6:
                     searchWord(vocabList);
                     break;
-                
-                  case 7:
-                  loadFile();
-                  break;
-                  
-                 /* case 8:
-                 * showWords();
-                 * break;
-                 * 
+
+                case 7:
+                    loadFile();
+                    break;
+
+                case 8:
+                    showWordsStartSameLetter(vocabList);
+                    break;
+
+                /*
                  * case 9:
                  * saveFile();
                  * break;
@@ -260,7 +261,7 @@ public class Driver {
         System.out.println("Enter Your Choice: ");
         Scanner sc = new Scanner(System.in);
         String letterChoice = sc.next();
-        switch (letterChoice){
+        switch (letterChoice) {
             case "a":
                 System.out.println("Enter the word to add: ");
                 String wordToAdd = sc.next();
@@ -283,7 +284,6 @@ public class Driver {
             default:
                 System.out.println("Invalid choice");
                 break;
-
 
         }
 
@@ -318,7 +318,6 @@ public class Driver {
 
     }
 
-
     public static void loadFile() {
         System.out.println("Enter the name of the text file to load:");
         Scanner sc = new Scanner(System.in);
@@ -327,7 +326,23 @@ public class Driver {
         VocabList vocabList = organiseFile(file);
         System.out.println("The file " + file + " has been loaded");
         mainMenu(vocabList);
+    }
 
+    public static void showWordsStartSameLetter(VocabList vocabList) {
+        System.out.println("Enter the letter to search for:");
+        Scanner sc = new Scanner(System.in);
+        String letter = sc.nextLine();
+        System.out.println("Words starting with " + letter + ":");
+
+        ArrayList<Vocab> arr = vocabList.getVocabList();
+        for (int i = 0; i < arr.size(); i++) {
+            ArrayList<String> wordList = arr.get(i).getWordList().getVocabListArray();
+            for (int j = 0; j < wordList.size(); j++) {
+                if (wordList.get(j).startsWith(letter)) {
+                    System.out.println(wordList.get(j));
+                }
+            }
+        }
 
     }
 }
