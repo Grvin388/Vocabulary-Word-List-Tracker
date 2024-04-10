@@ -82,6 +82,17 @@ public class WordList {
 
     }
 
+    public void changeWord(String wordToChange, String newWord) {
+        Node current = head;
+        while (current != null) {
+            if (current.word.equals(wordToChange)) {
+                current.word = newWord;
+                return;
+            }
+            current = current.next;
+        }
+    }
+
     // toString
     public String toString() {
         String result = "";

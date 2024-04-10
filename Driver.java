@@ -251,8 +251,42 @@ public class Driver {
         return vocabList;
     }
 
-    public static VocabList modifyTopic(VocabList vocabList){
+    public static VocabList modifyTopic(VocabList vocabList) {
         int choice = printPickATopic(vocabList);
+        ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
+        System.out.println("a add a word\n" +
+                "r remove a word\n" +
+                "c change a word\n" +
+                "0 Exit");
+        System.out.println("Enter Your Choice: ");
+        Scanner sc = new Scanner(System.in);
+        String letterChoice = sc.next();
+        switch (letterChoice){
+            case "a":
+                System.out.println("Enter the word to add: ");
+                String wordToAdd = sc.next();
+                arrayListVocab.get(choice - 1).getWordList().addWord(wordToAdd);
+                break;
+            case "r":
+                System.out.println("Enter the word to remove: ");
+                String wordToRemove = sc.next();
+                arrayListVocab.get(choice - 1).getWordList().removeWord(wordToRemove);
+                break;
+            case "c":
+                System.out.println("Enter the word to change: ");
+                String wordToChange = sc.next();
+                System.out.println("Enter the new word: ");
+                String newWord = sc.next();
+                arrayListVocab.get(choice - 1).getWordList().changeWord(wordToChange, newWord);
+                break;
+            case "0":
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+
+
+        }
 
         return vocabList;
     }
