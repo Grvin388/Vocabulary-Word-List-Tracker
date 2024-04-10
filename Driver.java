@@ -5,7 +5,7 @@ import java.io.File;
 public class Driver {
     public static void main(String[] args) {
         VocabList vocabList = organiseFile("A3_input_file.txt");
-        browseTopic(vocabList);
+        insertTopicBefore(vocabList);
     }
 
     // Organise input file into a list of vocab objects
@@ -168,13 +168,12 @@ public class Driver {
 
         ArrayList<Vocab> arrayListVocab = vocabList.getVocabList();
 
-        String topicNameToInsertBefore  = arrayListVocab.get(choice - 1).getTopicName();
+        String topicNameToInsertBefore = arrayListVocab.get(choice - 1).getTopicName();
 
         System.out.println("Enter the new topic name:");
         Scanner in = new Scanner(System.in);
         String topicName = in.nextLine();
 
-   
         System.out.println("Enter a word - Press Enter to quit");
         WordList wordList = new WordList();
         String word = in.nextLine();
@@ -187,12 +186,10 @@ public class Driver {
 
         vocabList.addVocabBefore(topicNameToInsertBefore, newVocab);
 
-
         // print the new vocab list
-        ArrayList<Vocab> arrayListVocab2 = vocabList.getVocabList();
-
-        for (int i = 0; i<arrayListVocab.size(); i++){
-            System.out.println(arrayListVocab2.get(i).getTopicName());
+        ArrayList<Vocab> arr = vocabList.getVocabList(); 
+        for(int i = 0;i<arr.size() ;i++){
+            System.out.println(arr.get(i));
         }
-        }
+    }
 }

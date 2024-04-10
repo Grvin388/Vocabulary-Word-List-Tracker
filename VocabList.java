@@ -78,29 +78,51 @@ public class VocabList {
     }
 
 
-    // add vocab in front of a specific topic
     public void addVocabBefore(String topicName, Vocab vocab) {
         Node newNode = new Node(vocab);
         // if the list is empty
-        if (head == null) {
-            head = newNode;
-        } else { // if the list is not empty
-            Node current = head;
-            while (current.next != null) {
-                if (current.vocab.getTopicName().equals(topicName)) {
+        if (this.head == null) {
+            this.head = newNode;
+            size++;
+            return;
+        }
+    
+        Node current = this.head;
+        while (current != null) {
+            if (current.vocab.getTopicName().equals(topicName)) {
+                if (current == this.head) { // If the node to add before is the head
+                    newNode.next = this.head;
+                    this.head.prev = newNode;
+                    this.head = newNode;
+                } else {
                     newNode.next = current;
                     newNode.prev = current.prev;
+                    
                     current.prev = newNode;
-                    current.prev.next = newNode;
-                    return;
+                    current.prev.prev.next = newNode;
+                   
+                 
+                  //  current.prev.next = newNode;
+                    //current.prev = newNode;
                 }
-                current = current.next;
+                size++;
+                System.out.println("Size: " + size);
+                return;
             }
-            current.next = newNode;
-            newNode.prev = current;
+            current = current.next;
         }
+    
+        // If the topicName is not found, add at the end
+        current = this.head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+        newNode.prev = current;
         size++;
+        System.out.println("Size: " + size);
     }
+    
 
     public ArrayList<Vocab> getVocabList() {
         ArrayList<Vocab> vocabList = new ArrayList<Vocab>(size);
