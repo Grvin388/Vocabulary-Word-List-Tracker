@@ -1,8 +1,8 @@
-#toys
-dildo
-vibrator
-plushy
-butt plug
+#sports
+soccer
+basketball
+badminton
+football
 
 #vehicle
 car
